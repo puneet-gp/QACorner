@@ -25,14 +25,11 @@ public class ValidationManagerImpl implements ValidationManager {
 		return basicJDBCService.screenNameExists(screenName);
 	}
 
-	@Override
 	public List<State> retrieveAllStateInfo() throws SQLException {
 		return basicJDBCService.getAllStates();
 	}
 
-	@Override
 	public boolean isValidUser(String emailId, String password) throws SQLException {
-
 		return basicJDBCService.isValidUser(emailId, password);
 	}
 }

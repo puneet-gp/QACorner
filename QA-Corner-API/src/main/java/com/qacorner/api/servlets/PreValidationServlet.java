@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -111,7 +112,7 @@ public class PreValidationServlet extends HttpServlet {
 			}
 		}
 		if (null != st) {
-			resp.getWriter().print(toJsonString(st.getCities()));
+			resp.getWriter().print(toJsonString(new TreeSet<String>(st.getCities())));
 		}
 	}
 

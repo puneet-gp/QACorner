@@ -31,25 +31,23 @@ public class BasicJDBCServiceImpl implements BasicJDBCService {
 
 	}
 
-	@Override
 	public boolean emailExists(String emailId) throws SQLException {
-		return connection
-				.prepareStatement(String.format(emailExistsStmt, emailId))
-				.executeQuery().next();
+		PreparedStatement stmt = connection.prepareStatement(String.format(emailExistsStmt, emailId));
+		boolean flag = stmt.executeQuery().next();
+		stmt.close();
+		return flag;
 	}
 
-	@Override
 	public boolean screenNameExists(String screenName) throws SQLException {
-		return connection
-				.prepareStatement(
-						String.format(screenNameExistsStmt, screenName))
-				.executeQuery().next();
+		PreparedStatement stmt = connection.prepareStatement(String.format(screenNameExistsStmt, screenName));
+		boolean flag = stmt.executeQuery().next();
+		stmt.close();
+		return flag;
 	}
 
-	@Override
 	public List<State> getAllStates() throws SQLException {
-		ResultSet rs = connection.prepareStatement(loadAllLocations)
-				.executeQuery();
+		PreparedStatement stmt = connection.prepareStatement(loadAllLocations);
+		ResultSet rs = stmt.executeQuery();
 		String currentStateName = null;
 		String currentStateId = null;
 		List<String> cityList = new ArrayList<String>();
@@ -75,15 +73,17 @@ public class BasicJDBCServiceImpl implements BasicJDBCService {
 				cityList.clear();
 			}
 		}
+		stmt.close();
 		rs.close();
 		return stateList;
 	}
 
-	@Override
 	public boolean isValidUser(String emailId, String password)
 			throws SQLException {
 		loadValidUser.setString(1, emailId);
 		loadValidUser.setString(2, password);
-		return loadValidUser.executeQuery().next();
+		boolean flag = loadValidUser.executeQuery().next();
+		loadValidUser.close();
+		return flag;
 	}
 }
