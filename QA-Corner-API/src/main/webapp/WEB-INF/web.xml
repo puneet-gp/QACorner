@@ -21,16 +21,6 @@
 		<param-name>db.config.password</param-name>
 		<param-value>puneet</param-value>
 	</context-param>
-	<servlet>
-		<servlet-name>PreValidationServlet</servlet-name>
-		<display-name>PreValidationServlet</display-name>
-		<description></description>
-		<servlet-class>com.qacorner.servlets.PreValidationServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>PreValidationServlet</servlet-name>
-		<url-pattern>/PreValidationServlet</url-pattern>
-	</servlet-mapping>
 	<resource-ref>
 		<description>
 			This is a reference to the global Resource for MySQL
