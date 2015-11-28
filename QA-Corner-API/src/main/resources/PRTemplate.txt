@@ -1,0 +1,9 @@
+<b>As per your request, Your new password : </b> <h3>%s</h3>
+Or You can  <a href='%s'>Click here</a>
+
+<hr/>
+
+<h3>Regards,</h3>
+
+<h2>QACorner - Support</h2>
+
