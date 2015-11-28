@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.qacorner.api.manager.ValidationManager;
-import com.qacorner.api.manager.impl.ValidationManagerImpl;
+import com.qacorner.api.manager.GeneralOpertaionsManager;
+import com.qacorner.api.manager.impl.GeneralOperationsManagerImpl;
 import com.qacorner.api.model.BasicSuccessResponse;
 import com.qacorner.api.model.ErrorResponse;
 import com.qacorner.api.model.State;
@@ -31,12 +31,12 @@ import com.qacorner.api.model.State;
 @WebServlet("/baseservlet")
 public class PreValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ValidationManager validationManager;
+	private GeneralOpertaionsManager validationManager;
 	private Collection<State> states = null;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		validationManager = new ValidationManagerImpl((Connection) config
+		validationManager = new GeneralOperationsManagerImpl((Connection) config
 				.getServletContext().getAttribute("connection"));
 	}
 

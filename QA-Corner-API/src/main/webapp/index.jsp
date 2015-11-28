@@ -91,7 +91,8 @@
 	<legend> Login </legend>
 	Email ID : <input type="text" name="std_email" required="required"/>
 	Password : <input type="password" name="std_password" required="required"/>
-	<input type="submit" name="login" value= "Login"/> <br/> <a href="Recovery.jsp">Forgot Password !</a>
+	<aside style="color: red; float: right;">${login_error }</aside>
+	<input type="submit" name="login" value= "Login"/> <br/> <a href="passwordrecovery.jsp">Forgot Password !</a>
 </fieldset>	
 <fieldset>
 	<legend> Join </legend>
