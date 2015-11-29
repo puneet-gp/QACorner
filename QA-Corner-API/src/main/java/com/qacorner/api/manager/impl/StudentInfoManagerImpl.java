@@ -9,6 +9,7 @@ import com.qacorner.api.exception.AppException;
 import com.qacorner.api.exception.DbException;
 import com.qacorner.api.manager.StudentInfoManager;
 import com.qacorner.api.model.StudentInfo;
+import com.qacorner.api.util.QACornerUtils;
 
 public class StudentInfoManagerImpl implements StudentInfoManager {
 
@@ -39,6 +40,14 @@ public class StudentInfoManagerImpl implements StudentInfoManager {
 	public StudentInfo getStudentInfoByUserId(String userId) {
 		try {
 			return studentInfoService.loadStudentInfoByUserId(userId);
+		} catch(DbException e) {
+			throw new AppException(e);
+		}
+	}
+
+	public void save(StudentInfo info) {
+		try {
+			studentInfoService.saveStudentInfo(info);
 		} catch(DbException e) {
 			throw new AppException(e);
 		}

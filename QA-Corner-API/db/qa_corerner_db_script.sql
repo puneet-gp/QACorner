@@ -5,3 +5,17 @@ CREATE TABLE if not exists qacorner.student_info(first_name varchar(100) NOT NUL
 CREATE TABLE if not exists qacorner.student_login_info(qacorner_student_id varchar(20) NOT NULL PRIMARY KEY, last_login timestamp, client_information text);
 
 CREATE TABLE if not exists qacorner.india_locations(state varchar(28), city varchar(30), state_id varchar(4));
+
+ALTER TABLE qacorner.student_info MODIFY COLUMN qacorner_student_id varchar(32);
+
+ALTER TABLE qacorner.student_info MODIFY COLUMN city varchar(28);
+ 
+ALTER TABLE qacorner.student_info MODIFY COLUMN school_name varchar(200);
+ 
+ALTER TABLE qacorner.student_info MODIFY COLUMN class_name varchar(10);
+ 
+ALTER TABLE qacorner.student_info MODIFY COLUMN screen_name varchar(40);
+ 
+ALTER TABLE qacorner.student_info MODIFY COLUMN dob date;
+ 
+ALTER TABLE student_info MODIFY COLUMN state varchar(30);

@@ -13,5 +13,5 @@ public interface StudentInfoService {
 	
 	StudentInfo loadStudentInfoByUserId(String userId) throws DbException;
 	
-	StudentInfo saveStudentInfo(StudentInfo info) throws DbException;
+	void saveStudentInfo(StudentInfo info) throws DbException;
 }

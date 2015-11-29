@@ -1,6 +1,6 @@
 package com.qacorner.api.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +29,7 @@ public class StudentInfo {
 	public void setScreenName(String screenName) {
 		this.screenName = screenName;
 	}
+
 	public String getFirstName() {
 		return StringUtils.capitalize(firstName);
 	}
@@ -85,8 +86,8 @@ public class StudentInfo {
 		this.gender = gender;
 	}
 
-	public String getRegistrationDate() {
-		return DATE_FORMAT.format(registrationDate);
+	public Date getRegistrationDate() {
+		return registrationDate;
 	}
 
 	public void setRegistrationDate(Date registrationDate) {
@@ -123,5 +124,10 @@ public class StudentInfo {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+
+	public Object[] registrationSchema() {
+		return new Object[] { getFirstName(), getLastName(), getPassword(),
+				getRegistrationDate(), getStudentId(), getEmailId() };
 	}
 }

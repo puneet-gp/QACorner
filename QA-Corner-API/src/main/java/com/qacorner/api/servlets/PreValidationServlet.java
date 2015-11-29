@@ -3,12 +3,8 @@ package com.qacorner.api.servlets;
 import static com.qacorner.api.util.QACornerUtils.toJsonString;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.TreeSet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -36,24 +32,21 @@ public class PreValidationServlet extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		validationManager = new GeneralOperationsManagerImpl((Connection) config
-				.getServletContext().getAttribute("connection"));
+		validationManager = new GeneralOperationsManagerImpl(
+				(Connection) config.getServletContext().getAttribute(
+						"connection"));
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		boolean isIncludeStates = StringUtils.isNotEmpty(req.getParameter("is"));
+		boolean isIncludeStates = StringUtils
+				.isNotEmpty(req.getParameter("is"));
 		resp.setContentType("application/json");
 		try {
 			if (isIncludeStates) {
 				states = validationManager.retrieveAllStateInfo();
 				includeStates(states, resp);
-				return;
-			}
-			boolean isState = StringUtils.isNotEmpty(req.getParameter("s"));
-			if (isState) {
-				includeCities(URLDecoder.decode(req.getParameter("s"), "UTF-8"), states, resp);
 				return;
 			}
 			boolean isCheckEmail = StringUtils.isNotEmpty(req
@@ -102,26 +95,8 @@ public class PreValidationServlet extends HttpServlet {
 		}
 	}
 
-	private void includeCities(String reqStateName, Collection<State> states,
-			HttpServletResponse resp) throws Exception {
-		State st = null;
-		for (State state : states) {
-			if (StringUtils.trim(state.getName()).equals(reqStateName)) {
-				st = state;
-				break;
-			}
-		}
-		if (null != st) {
-			resp.getWriter().print(toJsonString(new TreeSet<String>(st.getCities())));
-		}
-	}
-
 	private void includeStates(Collection<State> states,
 			HttpServletResponse resp) throws Exception {
-		List<String> stateNames = new ArrayList<String>(states.size());
-		for (State state : states) {
-			stateNames.add(state.getName());
-		}
-		resp.getWriter().print(toJsonString(stateNames));
+		resp.getWriter().print(toJsonString(states));
 	}
 }

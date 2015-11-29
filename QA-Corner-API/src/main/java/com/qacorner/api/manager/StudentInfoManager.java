@@ -10,5 +10,7 @@ public interface StudentInfoManager {
 	
 	StudentInfo getStudentInfoByEmailId(String emailId) ;
 	
-	StudentInfo getStudentInfoByUserId(String userId) ;
+	StudentInfo getStudentInfoByUserId(String userId);
+	
+	void save(StudentInfo info);
 }
